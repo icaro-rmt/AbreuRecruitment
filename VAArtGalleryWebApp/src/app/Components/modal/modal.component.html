@@ -1,0 +1,24 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Create/Edit Gallery</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Gallery Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="gallery.name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" [(ngModel)]="gallery.city" name="city" required>
+        </div>
+        <div class="mb-3">
+          <label for="manager" class="form-label">Manager</label>
+          <input type="text" class="form-control" id="manager" [(ngModel)]="gallery.manager" name="manager" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+  
