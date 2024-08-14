@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Gallery } from './models';
 import { GalleryService } from './gallery.service';
+import { Route, Router } from '@angular/router';
 
 
 
@@ -16,18 +17,17 @@ export class GalleryComponent implements OnInit {
   showModal: boolean = false;
   selectedGallery: Gallery | null = null;
 
-  constructor(private galleryService: GalleryService) { }
+  constructor(
+    private galleryService: GalleryService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    console.log('cenas');
     this.galleryService.getGalleries().subscribe(
       galleries => {
         this.galleries = galleries;
-        console.log(this.galleries);
       });
   }
   createNewGallery() {
-
     this.selectedGallery = {id:'', name: '', city: '', manager: '', nbrOfArtWorksOnDisplay: 0 };
     this.showModal = true;
   }
@@ -37,7 +37,8 @@ export class GalleryComponent implements OnInit {
   }
 
   openArtWorksList(galleryId: string) {
-    console.log(galleryId);
+    this.router.navigate(['art-galleries/details', galleryId]);
+    
   }
 
   closeModal(){

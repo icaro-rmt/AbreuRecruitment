@@ -9,12 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './Components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
+import { GalleryDetailsComponent } from './details/details.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    ModalComponent
+    ModalComponent,
+    GalleryDetailsComponent
   ],
   imports: [
     BrowserModule,

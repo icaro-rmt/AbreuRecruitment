@@ -5,7 +5,7 @@
   <table mat-table [dataSource]="galleries">
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef > Nome </th>
+      <th class="" mat-header-cell *matHeaderCellDef > Nome </th>
       <td mat-cell *matCellDef="let gallery"> {{gallery.name}} </td>
     </ng-container>
 
@@ -40,11 +40,8 @@
   </table>
 
   <footer>
-    <button (click)="createNewGallery()">Create New Gallery</button>
+    <button (click)="createNewGallery()">Add new gallery</button>
     <app-modal *ngIf="showModal" (close)="closeModal()"></app-modal>
-    <!-- <app-modal *ngIf="showModal" 
-    [gallery]="selectedGallery"
-     (close)="closeModal()"></app-modal> -->
   </footer>
 
 

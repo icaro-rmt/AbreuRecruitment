@@ -1,0 +1,44 @@
+h1 {
+    background-color: #007bff; /* Blue background */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  /* Table header styling */
+  .header-style {
+    background-color: #0056b3; /* Darker blue for the table header */
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Alternating row background colors */
+  .mat-row:nth-child(odd) {
+    background-color: #f2f2f2; /* Light Gray */
+  }
+  
+  .mat-row:nth-child(even) {
+    background-color: #d9d9d9; /* Dark Gray */
+  }
+  
+  /* Table cell padding for better spacing */
+  .mat-cell, .mat-header-cell {
+    padding: 10px;
+  }
+  
+  /* Button styling in the footer */
+  footer button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  footer button:hover {
+    background-color: #0056b3;
+  }
