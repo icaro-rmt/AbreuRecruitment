@@ -35,6 +35,7 @@ namespace VAArtGalleryWebAPI.Infrastructure
             var galleries = await GetAllArtGalleriesAsync(cancellationToken);
 
             artGallery.Id = Guid.NewGuid();
+            Console.WriteLine(artGallery.Id);
             galleries.Add(artGallery);
 
             return await Task.Run(() =>

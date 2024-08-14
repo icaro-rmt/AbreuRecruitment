@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using VAArtGalleryWebAPI.Domain.Interfaces;
 using VAArtGalleryWebAPI.Domain.Entities;
+using System.Linq;
 
 namespace VAArtGalleryWebAPI.Infrastructure
 {
@@ -35,7 +36,43 @@ namespace VAArtGalleryWebAPI.Infrastructure
 
         public async Task<bool> DeleteAsync(Guid artWorkId, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            //TODO: Clean spaghetti code
+
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var galleries = await new ArtGalleryRepository(_filePath).GetAllArtGalleriesAsync(cancellationToken);
+
+            var gallery = galleries.FindIndex(g => g.ArtWorksOnDisplay.Any(art => art.Id == artWorkId));
+
+            if (gallery < 0)
+                return false;
+
+            var artworkIndex = galleries[gallery].ArtWorksOnDisplay.FindIndex(a => a.Id == artWorkId);
+
+            galleries[gallery].ArtWorksOnDisplay.Remove(galleries[gallery].ArtWorksOnDisplay.First(item => item.Id == artWorkId));
+
+            //galleries.Remove(testes);
+
+
+            //if (gallery != null)
+            //{
+            //    //var artToRemove = gallery.ArtWorksOnDisplay.FindIndex(a => a.Id == artWorkId);
+            //    var artToRemove = gallery.ArtWorksOnDisplay.FirstOrDefault(a => a.Id == artWorkId);
+            //    if (artToRemove != null) 
+            //    {
+            //        gallery.ArtWorksOnDisplay.Remove(artToRemove);
+            //        Console.WriteLine("galeria sendo excluida: ", artToRemove.ToString());
+            //        return true;
+            //    }
+
+            //}
+            //
+            await UpdateGalleries(galleries);
+
+
+            return true;
+
+            
         }
 
         public async Task<List<ArtWork>> GetArtWorksByGalleryIdAsync(Guid artGalleryId, CancellationToken cancellationToken = default)
