@@ -1,1 +1,39 @@
-<p>details works!</p>
+<div>
+    <h1>
+      Obras
+    </h1>
+    <table mat-table [dataSource]="artWorks"  class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="name" class="th">
+        <th class="mat-header-cell"  *matHeaderCellDef > Nome da Obra </th>
+        <td mat-cell *matCellDef="let artWork"> {{artWork.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="author">
+        <th class="mat-header-cell" *matHeaderCellDef> Autor </th>
+        <td mat-cell *matCellDef="let artWork"> {{artWork.author}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="year">
+        <th class="mat-header-cell" *matHeaderCellDef> Data de Criacao </th>
+        <td mat-cell *matCellDef="let artWork"> {{artWork.creationYear}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="price">
+        <th class="mat-header-cell" *matHeaderCellDef> Valor </th>
+        <td mat-cell *matCellDef="let artWork"> {{artWork.askPrice | number:'1.3-3'}} € </td>
+      </ng-container>
+
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <footer>
+      <button (click)="returToMainPage()">Voltar</button>
+      
+    </footer>
+  
+  
+  </div>
+  

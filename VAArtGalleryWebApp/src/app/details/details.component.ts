@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtWorkService } from './artwork.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArtWork } from './models';
 
 @Component({
@@ -9,13 +9,14 @@ import { ArtWork } from './models';
   styleUrl: './details.component.css'
 })
 export class GalleryDetailsComponent implements OnInit {
-
   galleryId: string | null = null;
-  artWorks: Array<ArtWork> | null = null;
+  displayedColumns: string[] = ['name', 'author', 'year', 'price'  ];
+  artWorks: ArtWork[] = [];
   
   constructor(
     private route: ActivatedRoute,
-    private artworkService: ArtWorkService
+    private artworkService: ArtWorkService,
+    private router: Router
   ){}
 
 
@@ -23,18 +24,16 @@ export class GalleryDetailsComponent implements OnInit {
     this.galleryId = this.route.snapshot.paramMap.get('id');
 
     if(this.galleryId != null){
-     var result =  this.artworkService.getArtWorks(this.galleryId);
-     console.log(result);
-      
-      // .subscribe(
-      //   artWorks =>{
-      //     this.artWorks = artWorks;
-      //   },
-      //   error => console.error("Error loading Art Works", error)
-      // )
-      console.log(this.artWorks);
+      var result =  this.artworkService.getArtWorks(this.galleryId)
+      result.subscribe({
+      next: (artworks) => this.artWorks = artworks,
+      error: (err) => console.error('Error fetching artworks', err)
+      });    
     }
     
+  }
+  returToMainPage(){
+    this.router.navigate(['art-galleries']);
   }
 
 
